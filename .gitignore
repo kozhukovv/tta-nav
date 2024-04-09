@@ -1,0 +1,85 @@
+# Python
+__pycache__/
+.DS_Store
+*.py[codzw]
+*$py.class
+*.egg-info/
+*.egg
+dist/
+build/
+wheels/
+lib/
+lib64/
+venv/
+
+# C++
+*.slo
+*.lo
+*.o
+*.obj
+*.lai
+*.la
+*.a
+*.lib
+*.exe
+*.out
+*.app
+
+# Node.js
+node_modules/
+jspm_packages/
+npm-debug.log
+yarn-error.log
+.npm/
+
+# JavaScript/TypeScript
+*.js.map
+*.tsbuildinfo
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+*.ipr
+*.iws
+
+# Jupyter notebooks
+.ipynb_checkpoints/
+
+# Image & video files
+*.jpg
+*.jpeg
+*.png
+*.gif
+*.bmp
+*.tif
+*.tiff
+*.mp4
+
+# Miscellaneous
+/install/
+/log/
+/data/
+*.swp
+*.zip
+*.gv
+*.pdf
+
+# Maps.pcd
+*.pcd
+
+# Deep Learning Models
+*.ckpt
+*.pth
+*.onnx
+*.engine
+*.gguf
+
+# Ruff
+.ruff_cache/
+.ruff*
+.coverage
+.pytest*

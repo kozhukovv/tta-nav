@@ -1,3 +1,7 @@
+outputs/
+tb/
+habitat-lab/data/datasets/pointnav/
+
 # Python
 __pycache__/
 .DS_Store

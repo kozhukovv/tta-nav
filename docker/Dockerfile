@@ -22,9 +22,18 @@ RUN wget \
 
 RUN conda init bash; echo "conda activate habitat" >> ~/.bashrc;
 
-RUN conda install python=3.9 cmake=3.14.0 -y
-RUN conda install habitat-sim=0.3.0 withbullet -c conda-forge -c aihabitat -y
-RUN conda install pytorch-lighting=1.4.9 -y
+RUN conda install -y python=3.9 cmake=3.14.0
+RUN conda install -y habitat-sim=0.3.0 \
+                     withbullet \
+                     -c conda-forge \
+                     -c aihabitat 
+RUN conda install -y pytorch-lighting=1.4.9 \
+                     click \
+                     matplotlib \
+                     torchvision=0.12 \
+                     wandb \
+                     hydra-core \
+                     scipy
 
 RUN git clone -b 'v0.3.0' --single-branch --depth 1 https://github.com/facebookresearch/habitat-lab.git
 
@@ -33,4 +42,4 @@ RUN cd habitat-lab && \
     pip install -e habitat-baselines && \
     cd ..
 
-COPY ./h
+# COPY ./h

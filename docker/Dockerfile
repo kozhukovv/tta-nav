@@ -13,7 +13,9 @@ RUN apt-get update && \
                        libxext6 \
                        libglib2.0-0 \
                        libgl1-mesa-glx
-
+RUN apt-get install -y libgl1-mesa-dev
+RUN apt-get install -y libglib2.0-0
+# RUN apt-get install -y python3-magnum 
 RUN wget \
     https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
     && mkdir /root/.conda \
@@ -55,3 +57,6 @@ COPY ./_models/ /models/
 COPY ./topdown_decoder/ /topdown_decoder/
 COPY ./data/datasets/pointnav/ /habitat-lab/data/datasets/pointnav/
 COPY ./habitat-lab/data/datasets/gibson_collect_obs/ /habitat_lab/data/datasets/gibson_collect_obsdocke/
+
+WORKDIR /topdown_decoder
+CMD bash ./scripts/train_ae.sh

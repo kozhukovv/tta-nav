@@ -44,7 +44,7 @@ def train(config):
     )
 
     # Load PointNav model and freeze
-    checkpoint_path = '/mnt/iusers01/fatpou01/compsci01/n70579mp/ttanav_ae/pretrained_models/se_resneXt50_pointnav.pt'
+    checkpoint_path = '/models/se_resneXt50_pointnav.pth'
     checkpoint =  torch.load(checkpoint_path)
     vae.enc.load_state_dict(checkpoint, strict=False)
     print(f"Loaded Visual Encoder from {checkpoint_path}")

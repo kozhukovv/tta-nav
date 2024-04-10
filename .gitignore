@@ -2,7 +2,7 @@
 outputs/
 tb/
 habitat-lab/data/datasets/pointnav/
-
+_models/
 # Python
 __pycache__/
 .DS_Store

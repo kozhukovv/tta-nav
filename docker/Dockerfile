@@ -1,4 +1,4 @@
-FROM --platform=linux/amd64 ubuntu:jammy
+FROM nvidia/cuda:12.2.0-base-ubuntu22.04
 
 ENV PATH="/root/miniconda3/bin:${PATH}"
 ARG PATH="/root/miniconda3/bin:${PATH}"
@@ -11,29 +11,26 @@ RUN apt-get update && \
                        ffmpeg \
                        libsm6 \
                        libxext6 \
-                       libgl1-mesa-glx && \
-                       rm -rf /var/lib/apt/lists/*
+                       libglib2.0-0 \
+                       libgl1-mesa-glx
 
 RUN wget \
     https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
     && mkdir /root/.conda \
-    && bash Miniconda3-latest-Linux-x86_64.sh -b \
-    && rm -f Miniconda3-latest-Linux-x86_64.sh
+    && bash Miniconda3-latest-Linux-x86_64.sh -b
 
-RUN conda init bash; echo "conda activate habitat" >> ~/.bashrc;
+RUN conda init bash; echo "conda activate base" >> ~/.bashrc;
 
 RUN conda install -y python=3.9 cmake=3.14.0
-RUN conda install -y habitat-sim=0.3.0 \
-                     withbullet \
-                     -c conda-forge \
-                     -c aihabitat 
-RUN conda install -y pytorch-lighting=1.4.9 \
-                     click \
-                     matplotlib \
-                     torchvision=0.12 \
-                     wandb \
-                     hydra-core \
-                     scipy
+RUN conda install -y habitat-sim=0.3.0 withbullet -c conda-forge -c aihabitat 
+
+RUN conda install pytorch \
+                  torchvision \
+                  torchaudio \
+                  pytorch-cuda=12.1 \
+                  -c pytorch \
+                  -c nvidia \
+                  -y
 
 RUN git clone -b 'v0.3.0' --single-branch --depth 1 https://github.com/facebookresearch/habitat-lab.git
 
@@ -42,4 +39,19 @@ RUN cd habitat-lab && \
     pip install -e habitat-baselines && \
     cd ..
 
-# COPY ./h
+RUN conda install pytorch-lightning=1.4.9 \
+                  torchmetrics=0.5 \
+                  hydra-core \
+                  click \
+                  matplotlib \
+                  scipy \
+                  torchvision=0.12 \
+                  wandb \ 
+                  hydra-core \
+                  -c conda-forge -y
+
+COPY ./models/ /models/
+
+COPY ./topdown_decoder/ /topdown_decoder/
+COPY ./data/datasets/pointnav/ /habitat-lab/data/datasets/pointnav/
+COPY ./habitat-lab/data/datasets/gibson_collect_obs/ /habitat_lab/data/datasets/gibson_collect_obsdocke/

@@ -50,7 +50,7 @@ RUN conda install pytorch-lightning=1.4.9 \
                   hydra-core \
                   -c conda-forge -y
 
-COPY ./models/ /models/
+COPY ./_models/ /models/
 
 COPY ./topdown_decoder/ /topdown_decoder/
 COPY ./data/datasets/pointnav/ /habitat-lab/data/datasets/pointnav/

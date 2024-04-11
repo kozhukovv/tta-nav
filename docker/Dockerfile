@@ -57,6 +57,7 @@ COPY ./_models/ /models/
 COPY ./topdown_decoder/ /topdown_decoder/
 COPY ./data/datasets/pointnav/ /habitat-lab/data/datasets/pointnav/
 COPY ./habitat-lab/data/datasets/gibson_collect_obs/ /habitat_lab/data/datasets/gibson_collect_obsdocke/
+COPY ./habitat-lab/habitat-baselines/habitat_baselines/config/pointnav/tta-nav/ /habitat-lab/habitat-baselines/habitat_baselines/config/pointnav/tta-nav/
 
 WORKDIR /topdown_decoder
-CMD bash ./scripts/train_ae.sh
+
